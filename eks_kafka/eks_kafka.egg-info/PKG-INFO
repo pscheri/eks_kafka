@@ -1,14 +1,12 @@
 Metadata-Version: 2.1
 Name: eks-kafka
 Version: 0.0.1
-Summary: An empty CDK Python app
+Summary: AWS EKS + Kafka POC stack
 Home-page: UNKNOWN
-Author: author
+Author: Israel Fdez.
 License: UNKNOWN
 Description: 
         # Welcome to your CDK Python project!
-        
-        This is a blank project for Python development with CDK.
         
         The `cdk.json` file tells the CDK Toolkit how to execute your app.
         

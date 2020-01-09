@@ -1,1 +1,2 @@
+aws-cdk.aws-eks
 aws-cdk.core
