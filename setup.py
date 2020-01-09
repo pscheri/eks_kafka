@@ -9,17 +9,18 @@ setuptools.setup(
     name="eks_kafka",
     version="0.0.1",
 
-    description="An empty CDK Python app",
+    description="AWS EKS + Kafka POC stack",
     long_description=long_description,
     long_description_content_type="text/markdown",
 
-    author="author",
+    author="Israel Fdez.",
 
     package_dir={"": "eks_kafka"},
     packages=setuptools.find_packages(where="eks_kafka"),
 
     install_requires=[
         "aws-cdk.core",
+        "aws-cdk.aws-eks"
     ],
 
     python_requires=">=3.6",

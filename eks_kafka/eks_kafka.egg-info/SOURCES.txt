@@ -1,0 +1,6 @@
+README.md
+eks_kafka/eks_kafka.egg-info/PKG-INFO
+eks_kafka/eks_kafka.egg-info/SOURCES.txt
+eks_kafka/eks_kafka.egg-info/dependency_links.txt
+eks_kafka/eks_kafka.egg-info/requires.txt
+eks_kafka/eks_kafka.egg-info/top_level.txt
