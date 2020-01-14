@@ -32,3 +32,5 @@ class EksKafkaStack(core.Stack):
                                   masters_role=eks_admin_role,
                                   kubectl_enabled=True,
                                   vpc=vpc)
+        eks_cluster.add_capacity("worker", instance_type=ec2.InstanceType("t3.large"),
+                                 min_capacity=1, max_capacity=10)
