@@ -1,5 +1,5 @@
 
-# Welcome to your CDK Python project!
+# AWS EKS & MSK demo infrastructure
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
@@ -52,5 +52,39 @@ command.
  * `cdk deploy`      deploy this stack to your default AWS account/region
  * `cdk diff`        compare deployed stack with current state
  * `cdk docs`        open CDK documentation
+ 
+## Deployment
 
-Enjoy!
+### Infrastructure
+
+If it is the first time you use CDK with your AWS account, you might need to execute `cdk bootstrap aws://<AWS-ACCOUNT-ID>/<REGUION>` 
+to create the necessary environment in AWS to use CDK. 
+Where: 
+* AWS-ACCOUNT-ID: is the AWS account ID
+* REGION: The region you plan to use
+
+Use `cdk deploy` command to start deployment. You need your CDK configures, see: [CDK Workshop for more details](https://cdkworkshop.com/30-python.html).
+
+You should expect to confirm the list of IAM related objects. 
+
+Once finished you should see something like this: 
+
+```
+
+ ✅  eks-kafka
+
+Outputs:
+eks-kafka.EKSKafkaPocEKSClusterGetTokenCommandDFF6AF6B = aws eks get-token --cluster-name EKS_Kafka_PocCluster --region us-west-2 --role-arn arn:aws:iam::XXXXX:role/eks-kafka-EKSKafkaPocClusterAdminRole82245C53-13YP0OLAI2NVJ
+eks-kafka.EKSKafkaPocEKSClusterConfigCommand0C12FB7F = aws eks update-kubeconfig --name EKS_Kafka_PocCluster --region us-west-2 --role-arn arn:aws:iam::XXXXX:role/eks-kafka-EKSKafkaPocClusterAdminRole82245C53-13YP0OLAI2NVJ
+
+``` 
+
+### Services
+
+To deploy the producer service use these commands: 
+
+`kubectl apply -f https://raw.githubusercontent.com/iferca/producer-demo-app/master/kubernates/deployment.yaml`
+
+`kubectl apply -f https://raw.githubusercontent.com/iferca/producer-demo-app/master/kubernates/service.yaml`
+
+

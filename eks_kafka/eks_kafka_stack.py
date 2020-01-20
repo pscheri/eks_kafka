@@ -24,6 +24,17 @@ class EksKafkaStack(core.Stack):
                                      kafka_version="2.3.1",
                                      number_of_broker_nodes=3)
 
+        """
+        bastion_sg = ec2.SecurityGroup(self, "EKS_Kafka_Bastion_SG",
+                                       vpc=vpc,
+                                       security_group_name="EKS_Kafka_Bastion_SG")
+        bastion_sg.add_ingress_rule(peer=ec2.Peer.any_ipv4(),
+                                    connection=ec2.Port.tcp(22),
+                                    description="Allow SSH")
+        ec2.Instance(self, "EKS_Kafka_Bastion", instance_type=ec2.InstanceType.of("t2.micro"),
+                     vpc=vpc, security_group=bastion_sg,
+                     machine_image=)
+        """
         eks_admin_role = iam.Role(self, "EKS_Kafka_PocCluster-AdminRole",
                                   assumed_by=iam.AccountPrincipal(account_id=self.account))
 
