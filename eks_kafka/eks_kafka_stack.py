@@ -6,7 +6,6 @@ from aws_cdk import (
     aws_msk as msk
 )
 
-
 class EksKafkaStack(core.Stack):
 
     def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
