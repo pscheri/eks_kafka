@@ -5,6 +5,7 @@ from aws_cdk import (
     aws_iam as iam,
     aws_msk as msk
 )
+import json
 
 class EksKafkaStack(core.Stack):
 
@@ -45,38 +46,10 @@ class EksKafkaStack(core.Stack):
         eks_cluster.add_capacity("worker", instance_type=ec2.InstanceType("t3.large"),
                                  min_capacity=1, max_capacity=10)
 
-        app_label = {"app": "hello-kubernetes"}
-
-        deployment = {
-            "apiVersion": "apps/v1",
-            "kind": "Deployment",
-            "metadata": {"name": "hello-kubernetes"},
-            "spec": {
-                "replicas": 3,
-                "selector": {"matchLabels": app_label},
-                "template": {
-                    "metadata": {"labels": app_label},
-                    "spec": {
-                        "containers": [{
-                            "name": "hello-kubernetes",
-                            "image": "paulbouwer/hello-kubernetes:1.5",
-                            "ports": [{"containerPort": 8080}]
-                        }
-                        ]
-                    }
-                }
-            }
-        }
-
-        service = {
-            "apiVersion": "v1",
-            "kind": "Service",
-            "metadata": {"name": "hello-kubernetes"},
-            "spec": {
-                "type": "LoadBalancer",
-                "ports": [{"port": 80, "targetPort": 8080}],
-                "selector": app_label
-            }
-        }
-
+        with open("service_definitions\deployment_hello-kube.json") as data:
+            deployment = json.load(data)
+        
+        with open("service_definitions\service_hello-kube.json") as data:
+            service = json.load(data)
+        
         eks_cluster.add_resource("hello-kub", service, deployment)
