@@ -46,12 +46,6 @@ class EksKafkaStack(core.Stack):
         eks_cluster.add_capacity("worker", instance_type=ec2.InstanceType("t3.large"),
                                  min_capacity=1, max_capacity=10)
 
-        # with open("service_definitions\deployment_hello-kube.json") as data:
-        #     deployment = json.load(data)
-        
-        # with open("service_definitions\service_hello-kube.json") as data:
-        #     service = json.load(data)
-        
         deployment = open("service_definitions\deployment_hello-kube.json")
         service = open("service_definitions\service_hello-kube.json")
 
